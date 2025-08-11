@@ -14,45 +14,51 @@
         <h3>IPHONE 16 PROMAX</h3>
         <img src="Iphone 16 promax.jpeg" alt="iPhone 16 Pro Max" width="150">
         <p>Precio: $1350</p>
-        <p>El celular más potente de Apple, con una cámara de cine y un rendimiento insuperable para los usuarios más exigentes.</p>
-        <button onclick="agregarAlCarrito('IPHONE 16 PROMAX', 1350)">Agregar al carrito</button>
+        <input type="number" id="cantidad_iphone16promax" value="1" min="1">
+        <button onclick="agregarAlCarrito('IPHONE 16 PROMAX', 1350, 'cantidad_iphone16promax')">Agregar al carrito</button>
     </div>
     <div class="producto">
         <h3>IPHONE 16 PRO</h3>
         <img src="Iphone 16pro.jpeg" alt="iPhone 16 Pro" width="150">
         <p>Precio: $1100</p>
-        <p>Un equilibrio perfecto entre potencia y diseño. Ideal para quienes buscan la última tecnología sin compromisos.</p>
-        <button onclick="agregarAlCarrito('IPHONE 16 PRO', 1100)">Agregar al carrito</button>
+        <input type="number" id="cantidad_iphone16pro" value="1" min="1">
+        <button onclick="agregarAlCarrito('IPHONE 16 PRO', 1100, 'cantidad_iphone16pro')">Agregar al carrito</button>
     </div>
     <div class="producto">
         <h3>IPHONE 16</h3>
         <img src="Iphone 16.jpeg" alt="iPhone 16" width="150">
         <p>Precio: $950</p>
-        <p>La opción más accesible de la nueva generación. Un rendimiento excelente para el día a día y las redes sociales.</p>
-        <button onclick="agregarAlCarrito('IPHONE 16', 950)">Agregar al carrito</button>
+        <input type="number" id="cantidad_iphone16" value="1" min="1">
+        <button onclick="agregarAlCarrito('IPHONE 16', 950, 'cantidad_iphone16')">Agregar al carrito</button>
     </div>
     <div class="producto">
         <h3>AURICULARES AIRPODS PRO</h3>
         <img src="Airpods Pro 2.jpeg" alt="Auriculares Airpods Pro" width="150">
         <p>Precio: $230</p>
-        <p>Cancelación de ruido activa y sonido envolvente.</p>
-        <button onclick="agregarAlCarrito('AURICULARES AIRPODS PRO', 230)">Agregar al carrito</button>
+        <input type="number" id="cantidad_airpodspro" value="1" min="1">
+        <button onclick="agregarAlCarrito('AURICULARES AIRPODS PRO', 230, 'cantidad_airpodspro')">Agregar al carrito</button>
     </div>
     <div class="producto">
         <h3>CARGADOR ORIGINAL IPHONE</h3>
         <img src="Cargador Iphone.jpeg" alt="Cargador original iPhone" width="150">
         <p>Precio: $50</p>
-        <p>Cargador de 20W para una carga rápida y segura.</p>
-        <button onclick="agregarAlCarrito('CARGADOR ORIGINAL IPHONE', 50)">Agregar al carrito</button>
+        <input type="number" id="cantidad_cargadoriphone" value="1" min="1">
+        <button onclick="agregarAlCarrito('CARGADOR ORIGINAL IPHONE', 50, 'cantidad_cargadoriphone')">Agregar al carrito</button>
     </div>
     <div class="producto">
         <h3>CABLE USB IPHONE 16</h3>
         <img src="Usb cable iphone.jpeg" alt="Cable USB para iPhone 16" width="150">
         <p>Precio: $35</p>
-        <p>Cable de carga y transferencia de datos.</p>
-        <button onclick="agregarAlCarrito('CABLE USB IPHONE 16', 35)">Agregar al carrito</button>
+        <input type="number" id="cantidad_cableiphone" value="1" min="1">
+        <button onclick="agregarAlCarrito('CABLE USB IPHONE 16', 35, 'cantidad_cableiphone')">Agregar al carrito</button>
     </div>
-
+    <div class="producto">
+        <h3>AURICULARES IPHONE</h3>
+        <img src="Auriculares Iphone.jpeg" alt="Auriculares iPhone" width="150">
+        <p>Precio: $60</p>
+        <input type="number" id="cantidad_auricularesiphone" value="1" min="1">
+        <button onclick="agregarAlCarrito('AURICULARES IPHONE', 60, 'cantidad_auricularesiphone')">Agregar al carrito</button>
+    </div>
     <br>
     
     <h2>Samsung - Smartphones y Accesorios</h2>
@@ -60,66 +66,82 @@
         <h3>SAMSUNG S25</h3>
         <img src="Sansung s25 Ultra.jpeg" alt="Samsung S25 Ultra" width="150">
         <p>Precio: $1350</p>
-        <p>El buque insignia de Samsung, con la mejor pantalla del mercado y funciones avanzadas de IA.</p>
-        <button onclick="agregarAlCarrito('SAMSUNG S25', 1350)">Agregar al carrito</button>
+        <input type="number" id="cantidad_samsungs25" value="1" min="1">
+        <button onclick="agregarAlCarrito('SAMSUNG S25', 1350, 'cantidad_samsungs25')">Agregar al carrito</button>
     </div>
     <div class="producto">
         <h3>SAMSUNG S24</h3>
         <img src="Sansung s24 Ultra.jpeg" alt="Samsung S24 Ultra" width="150">
         <p>Precio: $100</p>
-        <p>Un celular versátil y con un excelente rendimiento.</p>
-        <button onclick="agregarAlCarrito('SAMSUNG S24', 100)">Agregar al carrito</button>
+        <input type="number" id="cantidad_samsungs24" value="1" min="1">
+        <button onclick="agregarAlCarrito('SAMSUNG S24', 100, 'cantidad_samsungs24')">Agregar al carrito</button>
     </div>
     <div class="producto">
         <h3>CARGADOR SAMSUNG</h3>
         <img src="Cargador Sansung Original.jpeg" alt="Cargador Samsung original" width="150">
         <p>Precio: $40</p>
-        <p>Cargador rápido y compatible con todos los modelos de Samsung.</p>
-        <button onclick="agregarAlCarrito('CARGADOR SAMSUNG', 40)">Agregar al carrito</button>
+        <input type="number" id="cantidad_cargadorsamsung" value="1" min="1">
+        <button onclick="agregarAlCarrito('CARGADOR SAMSUNG', 40, 'cantidad_cargadorsamsung')">Agregar al carrito</button>
     </div>
     <div class="producto">
         <h3>CABLE USB SAMSUNG</h3>
         <img src="Usb cable Sansung.jpeg" alt="Cable USB Samsung" width="150">
         <p>Precio: $30</p>
-        <p>Cable de carga USB-C.</p>
-        <button onclick="agregarAlCarrito('CABLE USB SAMSUNG', 30)">Agregar al carrito</button>
+        <input type="number" id="cantidad_cablesamsung" value="1" min="1">
+        <button onclick="agregarAlCarrito('CABLE USB SAMSUNG', 30, 'cantidad_cablesamsung')">Agregar al carrito</button>
     </div>
     <div class="producto">
-        <h3>Auriculares Samsung Galaxy Buds 3</h3>
+        <h3>AURICULARES SAMSUNG</h3>
         <img src="Sansung Galay bud 3.jpeg" alt="Auriculares Samsung Galaxy Buds 3" width="150">
         <p>Precio: $50</p>
-        <p>Audífonos de alta fidelidad.</p>
-        <button onclick="agregarAlCarrito('Auriculares Samsung Galaxy Buds 3', 50)">Agregar al carrito</button>
+        <input type="number" id="cantidad_auricularessamsung" value="1" min="1">
+        <button onclick="agregarAlCarrito('AURICULARES SAMSUNG', 50, 'cantidad_auricularessamsung')">Agregar al carrito</button>
     </div>
 
     <div id="carrito">
         <h2>Carrito de Compras</h2>
+        <p>Total de productos: <span id="totalProductos">0</span></p>
         <ul id="listaCarrito"></ul>
-        <p><strong>Total:</strong> $<span id="total">0</span></p>
+        <p><strong>Total a pagar:</strong> $<span id="total">0</span></p>
+        <button onclick="finalizarCompra()">Finalizar Compra</button>
         <button onclick="vaciarCarrito()">Vaciar carrito</button>
     </div>
 
     <script>
-        function agregarAlCarrito(nombre, precio) {
-          const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-          carrito.push({ nombre, precio });
-          localStorage.setItem('carrito', JSON.stringify(carrito));
-          mostrarCarrito();
+        function agregarAlCarrito(nombre, precio, idCantidad) {
+            const cantidad = parseInt(document.getElementById(idCantidad).value, 10);
+            if (cantidad > 0) {
+                const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+                
+                const itemExistente = carrito.find(item => item.nombre === nombre);
+                if (itemExistente) {
+                    itemExistente.cantidad += cantidad;
+                } else {
+                    carrito.push({ nombre, precio, cantidad });
+                }
+
+                localStorage.setItem('carrito', JSON.stringify(carrito));
+                mostrarCarrito();
+            }
         }
 
         function mostrarCarrito() {
           const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
           const lista = document.getElementById('listaCarrito');
           const totalElem = document.getElementById('total');
+          const totalProductosElem = document.getElementById('totalProductos');
           lista.innerHTML = '';
           let total = 0;
-          carrito.forEach((item, index) => {
+          let totalProductos = 0;
+          carrito.forEach((item) => {
             const li = document.createElement('li');
-            li.textContent = `${item.nombre} - $${item.precio}`;
+            li.textContent = `${item.nombre} - $${item.precio} x ${item.cantidad}`;
             lista.appendChild(li);
-            total += item.precio;
+            total += item.precio * item.cantidad;
+            totalProductos += item.cantidad;
           });
           totalElem.textContent = total.toFixed(2);
+          totalProductosElem.textContent = totalProductos;
         }
 
         function vaciarCarrito() {
@@ -127,8 +149,19 @@
           mostrarCarrito();
         }
 
+        function finalizarCompra() {
+            const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+            if (carrito.length > 0) {
+                alert('¡Gracias por tu compra! Tu pedido ha sido procesado.');
+                vaciarCarrito();
+            } else {
+                alert('El carrito está vacío. Agrega productos para finalizar la compra.');
+            }
+        }
+
         mostrarCarrito();
     </script>
 </body>
 </html>
+
 
