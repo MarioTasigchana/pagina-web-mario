@@ -108,7 +108,7 @@
                     <button id="show-login">Iniciar Sesión</button>
                     <button id="show-register">Registrarse</button>
                 </div>
-                <form id="register-form" style="display: none;">
+                <form id="register-form">
                     <h3>Formulario de Registro</h3>
                     <input type="text" id="nombre-usuario" placeholder="Nombre" required>
                     <input type="text" placeholder="Apellido" required>
@@ -204,7 +204,7 @@
             if (carrito.length > 0) {
                 const historial = JSON.parse(localStorage.getItem('historialCompras')) || [];
                 
-                const nombreUsuario = document.getElementById('nombre-usuario').value || 'Anónimo';
+                const nombreUsuario = localStorage.getItem('nombreUsuario') || 'Anónimo';
                 const metodoPago = document.querySelector('input[name="metodo_pago"]:checked').value;
                 
                 const nuevaCompra = {
@@ -263,6 +263,17 @@
             const showRegisterBtn = document.getElementById('show-register');
             const loginForm = document.getElementById('login-form');
             const registerForm = document.getElementById('register-form');
+
+            // Nueva funcionalidad: Guardar el nombre al registrarse
+            registerForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const nombreUsuario = document.getElementById('nombre-usuario').value;
+                if (nombreUsuario) {
+                    localStorage.setItem('nombreUsuario', nombreUsuario);
+                    alert(`¡Bienvenido, ${nombreUsuario}! Tu registro ha sido simulado.`);
+                }
+            });
+
             showLoginBtn.addEventListener('click', () => {
                 loginForm.style.display = 'block';
                 registerForm.style.display = 'none';
