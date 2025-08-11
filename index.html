@@ -1,37 +1,135 @@
-<div id="carrito">
-    <h2>Carrito de Compras</h2>
-    <ul id="listaCarrito"></ul>
-    <p><strong>Total:</strong> $<span id="total">0</span></p>
-    <button onclick="vaciarCarrito()">Vaciar carrito</button>
-</div>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda de Celulares Ecuador</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Tienda de Celulares Ecuador</h1>
+    
+    <h2>Apple - iPhone y Accesorios</h2>
+    <div class="producto">
+        <h3>IPHONE 16 PROMAX</h3>
+        <p>Precio: $1350</p>
+        <p>El celular más potente de Apple, con una cámara de cine y un rendimiento insuperable para los usuarios más exigentes.</p>
+        <button onclick="agregarAlCarrito('IPHONE 16 PROMAX', 1350)">Agregar al carrito</button>
+    </div>
+    <div class="producto">
+        <h3>IPHONE 16 PRO</h3>
+        <p>Precio: $1100</p>
+        <p>Un equilibrio perfecto entre potencia y diseño. Ideal para quienes buscan la última tecnología sin compromisos.</p>
+        <button onclick="agregarAlCarrito('IPHONE 16 PRO', 1100)">Agregar al carrito</button>
+    </div>
+    <div class="producto">
+        <h3>IPHONE 16</h3>
+        <p>Precio: $950</p>
+        <p>La opción más accesible de la nueva generación. Un rendimiento excelente para el día a día y las redes sociales.</p>
+        <button onclick="agregarAlCarrito('IPHONE 16', 950)">Agregar al carrito</button>
+    </div>
+    <div class="producto">
+        <h3>IPHONE 15</h3>
+        <p>Precio: $800</p>
+        <p>Con un diseño elegante y un procesador potente, es perfecto para cualquier actividad. [Descripción de IPHONE 15]</p>
+        <button onclick="agregarAlCarrito('IPHONE 15', 800)">Agregar al carrito</button>
+    </div>
+    <div class="producto">
+        <h3>AURICULARES AIRPODS PRO</h3>
+        <p>Precio: $230</p>
+        <p>Cancelación de ruido activa y sonido envolvente. [Descripción de AIRPODS PRO]</p>
+        <button onclick="agregarAlCarrito('AURICULARES AIRPODS PRO', 230)">Agregar al carrito</button>
+    </div>
+    <div class="producto">
+        <h3>CARGADOR ORIGINAL IPHONE</h3>
+        <p>Precio: $50</p>
+        <p>Cargador de 20W para una carga rápida y segura. [Descripción de cargador]</p>
+        <button onclick="agregarAlCarrito('CARGADOR ORIGINAL IPHONE', 50)">Agregar al carrito</button>
+    </div>
+    <div class="producto">
+        <h3>CABLE USB IPHONE 16</h3>
+        <p>Precio: $35</p>
+        <p>Cable de carga y transferencia de datos. [Descripción de cable USB]</p>
+        <button onclick="agregarAlCarrito('CABLE USB IPHONE 16', 35)">Agregar al carrito</button>
+    </div>
+    <div class="producto">
+        <h3>AURICULARES IPHONE</h3>
+        <p>Precio: $60</p>
+        <p>Audífonos con conector Lightning. [Descripción de auriculares]</p>
+        <button onclick="agregarAlCarrito('AURICULARES IPHONE', 60)">Agregar al carrito</button>
+    </div>
 
-<script>
-    function agregarAlCarrito(nombre, precio) {
-      const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-      carrito.push({ nombre, precio });
-      localStorage.setItem('carrito', JSON.stringify(carrito));
-      mostrarCarrito();
-    }
+    <br>
+    
+    <h2>Samsung - Smartphones y Accesorios</h2>
+    <div class="producto">
+        <h3>SAMSUNG S25</h3>
+        <p>Precio: $1350</p>
+        <p>El buque insignia de Samsung, con la mejor pantalla del mercado y funciones avanzadas de IA. [Descripción de SAMSUNG S25]</p>
+        <button onclick="agregarAlCarrito('SAMSUNG S25', 1350)">Agregar al carrito</button>
+    </div>
+    <div class="producto">
+        <h3>SAMSUNG S24</h3>
+        <p>Precio: $100</p>
+        <p>Un celular versátil y con un excelente rendimiento. [Descripción de SAMSUNG S24]</p>
+        <button onclick="agregarAlCarrito('SAMSUNG S24', 100)">Agregar al carrito</button>
+    </div>
+    <div class="producto">
+        <h3>CARGADOR SAMSUNG</h3>
+        <p>Precio: $40</p>
+        <p>Cargador rápido y compatible con todos los modelos de Samsung. [Descripción de cargador SAMSUNG]</p>
+        <button onclick="agregarAlCarrito('CARGADOR SAMSUNG', 40)">Agregar al carrito</button>
+    </div>
+    <div class="producto">
+        <h3>CABLE USB SAMSUNG</h3>
+        <p>Precio: $30</p>
+        <p>Cable de carga USB-C. [Descripción de cable SAMSUNG]</p>
+        <button onclick="agregarAlCarrito('CABLE USB SAMSUNG', 30)">Agregar al carrito</button>
+    </div>
+    <div class="producto">
+        <h3>AURICULARES SAMSUNG</h3>
+        <p>Precio: $50</p>
+        <p>Audífonos de alta fidelidad. [Descripción de auriculares SAMSUNG]</p>
+        <button onclick="agregarAlCarrito('AURICULARES SAMSUNG', 50)">Agregar al carrito</button>
+    </div>
 
-    function mostrarCarrito() {
-      const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-      const lista = document.getElementById('listaCarrito');
-      const totalElem = document.getElementById('total');
-      lista.innerHTML = '';
-      let total = 0;
-      carrito.forEach((item, index) => {
-        const li = document.createElement('li');
-        li.textContent = `${item.nombre} - $${item.precio}`;
-        lista.appendChild(li);
-        total += item.precio;
-      });
-      totalElem.textContent = total.toFixed(2);
-    }
+    <div id="carrito">
+        <h2>Carrito de Compras</h2>
+        <ul id="listaCarrito"></ul>
+        <p><strong>Total:</strong> $<span id="total">0</span></p>
+        <button onclick="vaciarCarrito()">Vaciar carrito</button>
+    </div>
 
-    function vaciarCarrito() {
-      localStorage.removeItem('carrito');
-      mostrarCarrito();
-    }
+    <script>
+        function agregarAlCarrito(nombre, precio) {
+          const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+          carrito.push({ nombre, precio });
+          localStorage.setItem('carrito', JSON.stringify(carrito));
+          mostrarCarrito();
+        }
 
-    mostrarCarrito();
-</script>
+        function mostrarCarrito() {
+          const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+          const lista = document.getElementById('listaCarrito');
+          const totalElem = document.getElementById('total');
+          lista.innerHTML = '';
+          let total = 0;
+          carrito.forEach((item, index) => {
+            const li = document.createElement('li');
+            li.textContent = `${item.nombre} - $${item.precio}`;
+            lista.appendChild(li);
+            total += item.precio;
+          });
+          totalElem.textContent = total.toFixed(2);
+        }
+
+        function vaciarCarrito() {
+          localStorage.removeItem('carrito');
+          mostrarCarrito();
+        }
+
+        mostrarCarrito();
+    </script>
+</body>
+</html>
+
