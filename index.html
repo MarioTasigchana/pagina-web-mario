@@ -263,17 +263,14 @@
             const showRegisterBtn = document.getElementById('show-register');
             const loginForm = document.getElementById('login-form');
             const registerForm = document.getElementById('register-form');
+            const nombreInput = document.getElementById('nombre-usuario');
 
-            // Nueva funcionalidad: Guardar el nombre al registrarse
-            registerForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                const nombreUsuario = document.getElementById('nombre-usuario').value;
-                if (nombreUsuario) {
-                    localStorage.setItem('nombreUsuario', nombreUsuario);
-                    alert(`¡Bienvenido, ${nombreUsuario}! Tu registro ha sido simulado.`);
-                }
+            // NUEVA LÍNEA DE CÓDIGO
+            // Guarda el nombre en localStorage cada vez que el usuario escribe
+            nombreInput.addEventListener('input', () => {
+                localStorage.setItem('nombreUsuario', nombreInput.value);
             });
-
+            
             showLoginBtn.addEventListener('click', () => {
                 loginForm.style.display = 'block';
                 registerForm.style.display = 'none';
