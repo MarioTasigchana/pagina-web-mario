@@ -1,0 +1,68 @@
+<h2>Apple - iPhone y Accesorios</h2>
+<div class="producto">
+    <h3>IPHONE 16 PROMAX</h3>
+    <p>Precio: $1350</p>
+    <button onclick="agregarAlCarrito('IPHONE 16 PROMAX', 1350)">Agregar al carrito</button>
+</div>
+<div class="producto">
+    <h3>IPHONE 16 PRO</h3>
+    <p>Precio: $1100</p>
+    <button onclick="agregarAlCarrito('IPHONE 16 PRO', 1100)">Agregar al carrito</button>
+</div>
+<div class="producto">
+    <h3>IPHONE 16</h3>
+    <p>Precio: $950</p>
+    <button onclick="agregarAlCarrito('IPHONE 16', 950)">Agregar al carrito</button>
+</div>
+<div class="producto">
+    <h3>IPHONE 15</h3>
+    <p>Precio: $800</p>
+    <button onclick="agregarAlCarrito('IPHONE 15', 800)">Agregar al carrito</button>
+</div>
+<div class="producto">
+    <h3>AURICULARES AIRPODS PRO</h3>
+    <p>Precio: $230</p>
+    <button onclick="agregarAlCarrito('AURICULARES AIRPODS PRO', 230)">Agregar al carrito</button>
+</div>
+<div class="producto">
+    <h3>CARGADOR ORIGINAL IPHONE</h3>
+    <p>Precio: $50</p>
+    <button onclick="agregarAlCarrito('CARGADOR ORIGINAL IPHONE', 50)">Agregar al carrito</button>
+</div>
+<div class="producto">
+    <h3>CABLE USB IPHONE 16</h3>
+    <p>Precio: $35</p>
+    <button onclick="agregarAlCarrito('CABLE USB IPHONE 16', 35)">Agregar al carrito</button>
+</div>
+<div class="producto">
+    <h3>AURICULARES IPHONE</h3>
+    <p>Precio: $60</p>
+    <button onclick="agregarAlCarrito('AURICULARES IPHONE', 60)">Agregar al carrito</button>
+</div>
+
+<h2>Samsung - Smartphones y Accesorios</h2>
+<div class="producto">
+    <h3>SAMSUNG S25</h3>
+    <p>Precio: $1350</p>
+    <button onclick="agregarAlCarrito('SAMSUNG S25', 1350)">Agregar al carrito</button>
+</div>
+<div class="producto">
+    <h3>SAMSUNG S24</h3>
+    <p>Precio: $100</p>
+    <button onclick="agregarAlCarrito('SAMSUNG S24', 100)">Agregar al carrito</button>
+</div>
+<div class="producto">
+    <h3>CARGADOR SAMSUNG</h3>
+    <p>Precio: $40</p>
+    <button onclick="agregarAlCarrito('CARGADOR SAMSUNG', 40)">Agregar al carrito</button>
+</div>
+<div class="producto">
+    <h3>CABLE USB SAMSUNG</h3>
+    <p>Precio: $30</p>
+    <button onclick="agregarAlCarrito('CABLE USB SAMSUNG', 30)">Agregar al carrito</button>
+</div>
+<div class="producto">
+    <h3>AURICULARES SAMSUNG</h3>
+    <p>Precio: $50</p>
+    <button onclick="agregarAlCarrito('AURICULARES SAMSUNG', 50)">Agregar al carrito</button>
+</div>
