@@ -103,11 +103,7 @@
 
         <div class="sidebar-container">
             <div class="login-box">
-                <h2>Registro / Inicio de Sesión</h2>
-                <div class="login-options">
-                    <button id="show-login">Iniciar Sesión</button>
-                    <button id="show-register">Registrarse</button>
-                </div>
+                <h2>Registro</h2>
                 <form id="register-form">
                     <h3>Formulario de Registro</h3>
                     <input type="text" id="nombre-usuario" placeholder="Nombre" required>
@@ -115,13 +111,7 @@
                     <input type="tel" id="telefono-usuario" placeholder="Número de teléfono" required>
                     <input type="email" id="correo-usuario" placeholder="Correo electrónico" required>
                     <input type="date" id="fecha-nacimiento-usuario" placeholder="Fecha de Nacimiento">
-                    <button type="submit">Registrar</button>
-                </form>
-                <form id="login-form" style="display: none;">
-                    <h3>Inicio de Sesión</h3>
-                    <input type="email" placeholder="Correo electrónico" required>
-                    <input type="password" placeholder="Contraseña" required>
-                    <button type="submit">Entrar</button>
+                    <button type="button" onclick="guardarRegistro()">Registrar</button>
                 </form>
             </div>
 
@@ -223,6 +213,25 @@
                 alert('El carrito está vacío. Agrega productos para finalizar la compra.');
             }
         }
+
+        function guardarRegistro() {
+            const nombre = document.getElementById('nombre-usuario').value;
+            const apellido = document.getElementById('apellido-usuario').value;
+            const telefono = document.getElementById('telefono-usuario').value;
+            const correo = document.getElementById('correo-usuario').value;
+            const fechaNacimiento = document.getElementById('fecha-nacimiento-usuario').value;
+
+            const datosUsuario = {
+                nombre,
+                apellido,
+                telefono,
+                correo,
+                fechaNacimiento
+            };
+
+            localStorage.setItem('datosUsuario', JSON.stringify(datosUsuario));
+            alert(`¡Bienvenido, ${nombre}! Tus datos han sido guardados.`);
+        }
         
         function mostrarHistorial() {
             const historial = JSON.parse(localStorage.getItem('historialCompras')) || [];
@@ -263,41 +272,6 @@
                 } else {
                     localStorage.removeItem('theme');
                 }
-            });
-            
-            const showLoginBtn = document.getElementById('show-login');
-            const showRegisterBtn = document.getElementById('show-register');
-            const loginForm = document.getElementById('login-form');
-            const registerForm = document.getElementById('register-form');
-            
-            // Nueva funcionalidad para guardar todos los datos del formulario de registro
-            registerForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                const nombre = document.getElementById('nombre-usuario').value;
-                const apellido = document.getElementById('apellido-usuario').value;
-                const telefono = document.getElementById('telefono-usuario').value;
-                const correo = document.getElementById('correo-usuario').value;
-                const fechaNacimiento = document.getElementById('fecha-nacimiento-usuario').value;
-
-                const datosUsuario = {
-                    nombre,
-                    apellido,
-                    telefono,
-                    correo,
-                    fechaNacimiento
-                };
-
-                localStorage.setItem('datosUsuario', JSON.stringify(datosUsuario));
-                alert(`¡Bienvenido, ${nombre}! Tus datos han sido guardados.`);
-            });
-
-            showLoginBtn.addEventListener('click', () => {
-                loginForm.style.display = 'block';
-                registerForm.style.display = 'none';
-            });
-            showRegisterBtn.addEventListener('click', () => {
-                registerForm.style.display = 'block';
-                loginForm.style.display = 'none';
             });
         });
     </script>
