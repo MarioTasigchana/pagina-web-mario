@@ -117,6 +117,9 @@
                         <button type="button" class="role-btn" id="btn-admin" onclick="seleccionarRol('admin')">Administrador</button>
                         <input type="hidden" id="selected-role" value="user">
                     </div>
+                    <div id="admin-code-container" style="display:none;">
+                        <input type="password" id="admin-code" placeholder="Código de administrador" required>
+                    </div>
                     <button type="button" onclick="guardarRegistro()">Registrar</button>
                 </form>
             </div>
@@ -256,9 +259,15 @@
             const correo = document.getElementById('correo-usuario').value;
             const password = document.getElementById('password-usuario').value;
             const rol = document.getElementById('selected-role').value;
+            const adminCode = document.getElementById('admin-code').value;
 
             if (!correo || !password) {
                 alert('El correo y la contraseña son obligatorios para el registro.');
+                return;
+            }
+
+            if (rol === 'admin' && adminCode !== 'Admin12345') {
+                alert('El código de administrador es incorrecto.');
                 return;
             }
 
@@ -335,6 +344,13 @@
             document.getElementById('btn-user').classList.remove('active-role');
             document.getElementById('btn-admin').classList.remove('active-role');
             document.getElementById(`btn-${rol}`).classList.add('active-role');
+
+            const adminCodeContainer = document.getElementById('admin-code-container');
+            if (rol === 'admin') {
+                adminCodeContainer.style.display = 'block';
+            } else {
+                adminCodeContainer.style.display = 'none';
+            }
         }
 
         function iniciarSesion() {
