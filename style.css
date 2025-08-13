@@ -23,6 +23,7 @@ body {
 
 .main-container {
     display: flex;
+    flex-direction: row; /* Asegura la dirección horizontal en pantallas grandes */
     gap: 20px;
 }
 
@@ -126,4 +127,11 @@ input[type="number"] {
 
 .user-action-buttons button {
     width: auto;
+}
+
+/* --- Media query para pantallas pequeñas --- */
+@media (max-width: 768px) {
+    .main-container {
+        flex-direction: column; /* Apila los contenedores verticalmente */
+    }
 }
