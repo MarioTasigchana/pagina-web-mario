@@ -110,11 +110,36 @@
                     <input type="text" id="apellido-usuario" placeholder="Apellido" required>
                     <input type="tel" id="telefono-usuario" placeholder="Número de teléfono" required>
                     <input type="email" id="correo-usuario" placeholder="Correo electrónico" required>
-                    <input type="date" id="fecha-nacimiento-usuario" placeholder="Fecha de Nacimiento">
+                    <input type="password" id="password-usuario" placeholder="Contraseña" required>
+                    <div class="role-selection">
+                        <h4>Selecciona tu rol:</h4>
+                        <button type="button" class="role-btn" id="btn-user" onclick="seleccionarRol('user')">Usuario</button>
+                        <button type="button" class="role-btn" id="btn-admin" onclick="seleccionarRol('admin')">Administrador</button>
+                        <input type="hidden" id="selected-role" value="user">
+                    </div>
                     <button type="button" onclick="guardarRegistro()">Registrar</button>
                 </form>
             </div>
 
+            <div class="login-box">
+                <h2>Inicio de Sesión</h2>
+                <div id="logged-out-section">
+                    <form id="login-form">
+                        <input type="text" id="login-nombre" placeholder="Nombre" required>
+                        <input type="password" id="login-password" placeholder="Contraseña" required>
+                        <button type="button" id="btn-login" onclick="iniciarSesion()">Iniciar Sesión</button>
+                    </form>
+                </div>
+                <div id="logged-in-section" style="display:none;">
+                    <div id="logged-in-user">
+                        <p>Sesión iniciada como: <strong id="current-user-info"></strong></p>
+                    </div>
+                    <div class="user-action-buttons">
+                        <button type="button" id="btn-logout" onclick="cerrarSesion()">Cerrar Sesión</button>
+                    </div>
+                </div>
+            </div>
+            
             <div id="carrito" class="carrito-box">
                 <h2>Carrito de Compras</h2>
                 <p>Total de productos: <span id="totalProductos">0</span></p>
@@ -193,13 +218,23 @@
             const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
             if (carrito.length > 0) {
                 const historial = JSON.parse(localStorage.getItem('historialCompras')) || [];
+                const currentUser = JSON.parse(localStorage.getItem('currentUser'));
                 
-                const datosUsuario = JSON.parse(localStorage.getItem('datosUsuario')) || { nombre: 'Anónimo' };
+                if (!currentUser) {
+                    alert('Debes iniciar sesión para finalizar la compra.');
+                    return;
+                }
+                
                 const metodoPago = document.querySelector('input[name="metodo_pago"]:checked').value;
                 
                 const nuevaCompra = {
                     fecha: new Date().toLocaleString(),
-                    usuario: datosUsuario,
+                    usuario: {
+                        nombre: currentUser.nombre,
+                        apellido: currentUser.apellido,
+                        correo: currentUser.correo,
+                        rol: currentUser.rol
+                    },
                     metodoPago: metodoPago,
                     productos: carrito,
                     total: carrito.reduce((sum, item) => sum + item.precio * item.cantidad, 0)
@@ -219,25 +254,64 @@
             const apellido = document.getElementById('apellido-usuario').value;
             const telefono = document.getElementById('telefono-usuario').value;
             const correo = document.getElementById('correo-usuario').value;
-            const fechaNacimiento = document.getElementById('fecha-nacimiento-usuario').value;
+            const password = document.getElementById('password-usuario').value;
+            const rol = document.getElementById('selected-role').value;
 
-            const datosUsuario = {
+            if (!correo || !password) {
+                alert('El correo y la contraseña son obligatorios para el registro.');
+                return;
+            }
+
+            const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+            const usuarioExistente = usuarios.find(user => user.correo === correo);
+
+            if (usuarioExistente) {
+                alert('Ya existe un usuario con este correo electrónico.');
+                return;
+            }
+
+            const nuevoUsuario = {
                 nombre,
                 apellido,
                 telefono,
                 correo,
-                fechaNacimiento
+                password,
+                rol
             };
-
-            localStorage.setItem('datosUsuario', JSON.stringify(datosUsuario));
-            alert(`¡Bienvenido, ${nombre}! Tus datos han sido guardados.`);
+            usuarios.push(nuevoUsuario);
+            localStorage.setItem('usuarios', JSON.stringify(usuarios));
+            alert(`¡Bienvenido, ${nombre}! Te has registrado como ${rol}.`);
+            limpiarFormularioRegistro();
         }
         
+        function limpiarFormularioRegistro() {
+            document.getElementById('register-form').reset();
+            seleccionarRol('user');
+        }
+
         function mostrarHistorial() {
             const historial = JSON.parse(localStorage.getItem('historialCompras')) || [];
             const lista = document.getElementById('listaHistorial');
+            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
             lista.innerHTML = '';
-            historial.forEach((compra) => {
+            
+            let historialAMostrar = [];
+
+            if (currentUser && currentUser.rol === 'admin') {
+                historialAMostrar = historial;
+            } else if (currentUser && currentUser.rol === 'user') {
+                historialAMostrar = historial.filter(compra => compra.usuario.correo === currentUser.correo);
+            } else {
+                lista.innerHTML = '<li>Debes iniciar sesión para ver el historial de compras.</li>';
+                return;
+            }
+
+            if (historialAMostrar.length === 0) {
+                lista.innerHTML = '<li>No hay compras en el historial.</li>';
+                return;
+            }
+
+            historialAMostrar.forEach((compra) => {
                 const li = document.createElement('li');
                 const detallesCompra = compra.productos.map(item => `${item.nombre} (${item.cantidad})`).join(', ');
                 
@@ -246,6 +320,7 @@
                 li.innerHTML = `
                     <strong>Comprador:</strong> ${nombreCompleto}<br>
                     <strong>Correo:</strong> ${compra.usuario.correo || 'N/A'}<br>
+                    <strong>Rol:</strong> ${compra.usuario.rol || 'N/A'}<br>
                     <strong>Fecha:</strong> ${compra.fecha}<br>
                     <strong>Método de pago:</strong> ${compra.metodoPago}<br>
                     <strong>Productos:</strong> ${detallesCompra}<br>
@@ -254,10 +329,61 @@
                 lista.appendChild(li);
             });
         }
+        
+        function seleccionarRol(rol) {
+            document.getElementById('selected-role').value = rol;
+            document.getElementById('btn-user').classList.remove('active-role');
+            document.getElementById('btn-admin').classList.remove('active-role');
+            document.getElementById(`btn-${rol}`).classList.add('active-role');
+        }
+
+        function iniciarSesion() {
+            const nombre = document.getElementById('login-nombre').value;
+            const password = document.getElementById('login-password').value;
+            const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+            
+            const currentUser = usuarios.find(user => user.nombre === nombre && user.password === password);
+
+            if (currentUser) {
+                localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                alert(`Has iniciado sesión como ${currentUser.nombre} (${currentUser.rol}).`);
+                document.getElementById('login-form').reset();
+            } else {
+                alert('Nombre de usuario o contraseña incorrectos.');
+            }
+            actualizarEstadoSesion();
+            mostrarHistorial();
+        }
+
+        function cerrarSesion() {
+            localStorage.removeItem('currentUser');
+            alert('Has cerrado sesión.');
+            actualizarEstadoSesion();
+            mostrarHistorial();
+        }
+
+        function actualizarEstadoSesion() {
+            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            const loggedOutSection = document.getElementById('logged-out-section');
+            const loggedInSection = document.getElementById('logged-in-section');
+            const currentUserInfo = document.getElementById('current-user-info');
+            
+            if (currentUser) {
+                loggedOutSection.style.display = 'none';
+                loggedInSection.style.display = 'block';
+                currentUserInfo.textContent = `${currentUser.nombre} (${currentUser.rol})`;
+            } else {
+                loggedOutSection.style.display = 'block';
+                loggedInSection.style.display = 'none';
+                currentUserInfo.textContent = '';
+            }
+        }
 
         document.addEventListener('DOMContentLoaded', () => {
             mostrarCarrito();
+            actualizarEstadoSesion();
             mostrarHistorial();
+            seleccionarRol('user');
 
             const themeToggle = document.getElementById('theme-toggle');
             const body = document.body;
@@ -277,5 +403,3 @@
     </script>
 </body>
 </html>
-
-
